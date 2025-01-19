@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5kgoi7pra4ql"]
+
+[ext_resource type="PackedScene" uid="uid://c7vkciwm1rv56" path="res://scenes/player.tscn" id="1_uqvuq"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_bno3g"]
+
+[node name="BasicLevel" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 696.0
+offset_bottom = 370.0
+
+[node name="Player" parent="." instance=ExtResource("1_uqvuq")]
+position = Vector2(348, 190)
+
+[node name="StateChartDebugger2" parent="Player" instance=ExtResource("2_bno3g")]
+offset_left = 134.0
+offset_top = -313.0
+offset_right = 540.0
+offset_bottom = -48.0
+initial_node_to_watch = NodePath("..")
