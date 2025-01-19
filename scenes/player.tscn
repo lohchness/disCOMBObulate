@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7vkciwm1rv56"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
+[ext_resource type="Texture2D" uid="uid://ddhqebqmk453v" path="res://icon.svg" id="1_iwb06"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_u1clw"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_00gu3"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_c8rcw"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_qares"]
+
+[sub_resource type="Curve" id="Curve_61e15"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, -0.922566, 0, 0, Vector2(1, 0), -9.84303, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67psh"]
+size = Vector2(127.5, 128)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_iv5bl")
+dashcurve = SubResource("Curve_61e15")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.725, 0.725)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_67psh")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-0.25, 0)
+texture = ExtResource("1_iwb06")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_3xl7s")
+
+[node name="Actions" type="Node" parent="StateChart"]
+script = ExtResource("4_u1clw")
+
+[node name="Movement" type="Node" parent="StateChart/Actions"]
+script = ExtResource("5_00gu3")
+initial_state = NodePath("Dash")
+
+[node name="Dash" type="Node" parent="StateChart/Actions/Movement"]
+script = ExtResource("6_c8rcw")
+
+[node name="To Basic" type="Node" parent="StateChart/Actions/Movement/Dash"]
+script = ExtResource("7_qares")
+to = NodePath("../../Basic")
+event = &"finish_dash"
+delay_in_seconds = "0.0"
+
+[node name="Basic" type="Node" parent="StateChart/Actions/Movement"]
+script = ExtResource("5_00gu3")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Actions/Movement/Basic"]
+script = ExtResource("6_c8rcw")
+
+[node name="To Run" type="Node" parent="StateChart/Actions/Movement/Basic/Idle"]
+script = ExtResource("7_qares")
+to = NodePath("../../Run")
+event = &"on_move"
+delay_in_seconds = "0.0"
+
+[node name="Run" type="Node" parent="StateChart/Actions/Movement/Basic"]
+script = ExtResource("6_c8rcw")
+
+[node name="To Idle" type="Node" parent="StateChart/Actions/Movement/Basic/Run"]
+script = ExtResource("7_qares")
+to = NodePath("../../Idle")
+event = &"on_idle"
+delay_in_seconds = "0.0"
+
+[node name="To Dash" type="Node" parent="StateChart/Actions/Movement/Basic/Run"]
+script = ExtResource("7_qares")
+to = NodePath("../../../Dash")
+event = &"on_dash"
+delay_in_seconds = "0.0"
+
+[node name="Attacking" type="Node" parent="StateChart/Actions"]
+script = ExtResource("5_00gu3")
+initial_state = NodePath("IdleAttack")
+
+[node name="IdleAttack" type="Node" parent="StateChart/Actions/Attacking"]
+script = ExtResource("6_c8rcw")
+
+[node name="Primary" type="Node" parent="StateChart/Actions/Attacking"]
+script = ExtResource("6_c8rcw")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_physics_processing"]
+[connection signal="state_input" from="StateChart/Actions/Movement/Basic" to="." method="_on_basic_state_input"]
+[connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Run" to="." method="_on_run_state_physics_processing"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
