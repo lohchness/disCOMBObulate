@@ -15,8 +15,6 @@ func _ready() -> void:
 
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
-	
-	
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -29,8 +27,8 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func _physics_process(delta: float) -> void:
-	if navigation_agent.is_navigation_finished():
-		return
+	#if navigation_agent.is_navigation_finished():
+		#return
 	
 	set_movement_target(target_character.position)
 	
