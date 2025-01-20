@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7vkciwm1rv56"]
+[gd_scene load_steps=24 format=3 uid="uid://c7vkciwm1rv56"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_c8rcw"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_qares"]
 [ext_resource type="Texture2D" uid="uid://bljgwnic8c575" path="res://assets/aseprite/player-hooded/Run.png" id="8_dv5qa"]
+[ext_resource type="Texture2D" uid="uid://ciixkn30pu7b1" path="res://assets/sprites/items/Sword.png" id="9_cmkgi"]
+[ext_resource type="Texture2D" uid="uid://dh2cc46vib3ee" path="res://assets/sprites/sword/Primary.png" id="10_0l3ef"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_x2u2y"]
 
 [sub_resource type="Curve" id="Curve_61e15"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, -0.922566, 0, 0, Vector2(1, 0), -9.84303, 0.0, 0, 0]
@@ -121,18 +124,158 @@ tracks/0/path = NodePath("SwordAnchor/Sword:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [ExtResource("9_cmkgi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -28)]
+}
+
+[sub_resource type="Animation" id="Animation_ny6pi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_cmkgi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -30)]
+}
+
+[sub_resource type="Animation" id="Animation_g8k7q"]
+resource_name = "Attack1"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_0l3ef")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, -28)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5evj2"]
 _data = {
+"Attack1": SubResource("Animation_g8k7q"),
+"RESET": SubResource("Animation_ny6pi"),
 "SwordIdle": SubResource("Animation_gcjey")
 }
-
-[sub_resource type="AnimationRootNode" id="AnimationRootNode_ly78k"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iv5bl")
@@ -192,6 +335,30 @@ initial_state = NodePath("SwordIdle")
 [node name="SwordIdle" type="Node" parent="StateChart/Actions/Sword"]
 script = ExtResource("6_c8rcw")
 
+[node name="To Attack1" type="Node" parent="StateChart/Actions/Sword/SwordIdle"]
+script = ExtResource("7_qares")
+to = NodePath("../../Attacks/Attack1")
+event = &"attack1"
+delay_in_seconds = "0.0"
+
+[node name="To Attack2" type="Node" parent="StateChart/Actions/Sword/SwordIdle"]
+script = ExtResource("7_qares")
+to = NodePath("../../Attacks/Attack2")
+event = &"attack2"
+delay_in_seconds = "0.0"
+
+[node name="To Attack3" type="Node" parent="StateChart/Actions/Sword/SwordIdle"]
+script = ExtResource("7_qares")
+to = NodePath("../../Attacks/Attack3")
+event = &"attack3"
+delay_in_seconds = "0.0"
+
+[node name="To Secondary" type="Node" parent="StateChart/Actions/Sword/SwordIdle"]
+script = ExtResource("7_qares")
+to = NodePath("../../Attacks/Secondary")
+event = &"secondary"
+delay_in_seconds = "0.0"
+
 [node name="Attacks" type="Node" parent="StateChart/Actions/Sword"]
 script = ExtResource("5_00gu3")
 initial_state = NodePath("Attack1")
@@ -208,11 +375,19 @@ script = ExtResource("6_c8rcw")
 [node name="Secondary" type="Node" parent="StateChart/Actions/Sword/Attacks"]
 script = ExtResource("6_c8rcw")
 
-[node name="Transition" type="Node" parent="StateChart/Actions/Sword/Attacks"]
+[node name="To SwordIdle" type="Node" parent="StateChart/Actions/Sword/Attacks"]
 script = ExtResource("7_qares")
 to = NodePath("../../SwordIdle")
 event = &"animation_finished"
 delay_in_seconds = "0.0"
+
+[node name="PrimaryExpire" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PrimaryCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -248,14 +423,23 @@ libraries = {
 [node name="SwordAnchor" type="Node2D" parent="."]
 
 [node name="Sword" parent="SwordAnchor" instance=ExtResource("2_mhond")]
-position = Vector2(43, -16)
+position = Vector2(30, -30)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationRootNode_ly78k")
+[node name="StateChartDebugger" parent="." instance=ExtResource("10_x2u2y")]
+offset_left = -752.0
+offset_top = -417.0
+offset_right = -201.0
+offset_bottom = -46.0
+initial_node_to_watch = NodePath("../StateChart")
 
 [connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_physics_processing"]
 [connection signal="state_input" from="StateChart/Actions/Movement/Basic" to="." method="_on_basic_state_input"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Run" to="." method="_on_run_state_physics_processing"]
+[connection signal="state_input" from="StateChart/Actions/Sword/SwordIdle" to="." method="_on_sword_idle_state_input"]
+[connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack1" to="." method="_on_attack_1_state_entered"]
+[connection signal="timeout" from="PrimaryExpire" to="." method="_on_primary_expire_timeout"]
+[connection signal="timeout" from="PrimaryCooldown" to="." method="_on_primary_cooldown_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="animation_finished" from="SwordAnimation" to="." method="_on_sword_animation_animation_finished"]

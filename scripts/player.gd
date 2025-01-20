@@ -68,7 +68,6 @@ func _on_dash_state_entered() -> void:
 	
 	dash_timer.start()
 	can_dash = false
-	print(direction)
 
 func _on_dash_state_physics_processing(delta: float) -> void:
 	velocity = direction * roll_speed(dash_timer.wait_time-dash_timer.time_left) * DASH_SPEED
@@ -82,3 +81,47 @@ func roll_speed(t: float):
 
 
 ## Attacking
+
+var attack_number = 0
+
+@onready var primary_expire: Timer = $PrimaryExpire
+@onready var primary_cooldown: Timer = $PrimaryCooldown
+
+@onready var ap_sword: AnimationPlayer = $SwordAnimation
+
+func _on_sword_idle_state_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("primary"):
+		# Primary cooldown timer off cooldown
+		if primary_cooldown.is_stopped() and attack_number == 0:
+			statechart.send_event("attack1")
+		
+		# Primary combo expire timer has not expired yet
+		if not primary_expire.is_stopped():
+			if attack_number == 1:
+				statechart.send_event("attack2")
+				
+			elif attack_number == 2:
+				statechart.send_event("attack3")
+
+
+func _on_attack_1_state_entered() -> void:
+	primary_expire.start() # Start combo expire timer
+	attack_number = 1
+	ap_sword.play("Attack1")
+	
+	print_debug("Attack 1 entered")
+
+
+func _on_sword_animation_animation_finished(anim_name: StringName) -> void:
+	statechart.send_event("animation_finished")
+
+
+# Timer for primary combo
+func _on_primary_expire_timeout() -> void:
+	primary_cooldown.start()
+	print_debug("Primary combo expired! Starting cooldown...")
+
+# Timer for primary attack cooldown.
+func _on_primary_cooldown_timeout() -> void:
+	attack_number = 0
+	print_debug("Primary attack ready!")
