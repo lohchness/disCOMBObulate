@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7vkciwm1rv56"]
+[gd_scene load_steps=26 format=3 uid="uid://c7vkciwm1rv56"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
@@ -10,8 +10,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_qares"]
 [ext_resource type="Texture2D" uid="uid://bljgwnic8c575" path="res://assets/aseprite/player-hooded/Run.png" id="8_dv5qa"]
 [ext_resource type="Texture2D" uid="uid://ciixkn30pu7b1" path="res://assets/sprites/items/Sword.png" id="9_cmkgi"]
-[ext_resource type="Texture2D" uid="uid://dh2cc46vib3ee" path="res://assets/sprites/sword/Primary.png" id="10_0l3ef"]
+[ext_resource type="Texture2D" uid="uid://chy152bl7df7v" path="res://assets/sprites/sword/Attack1.png" id="9_f0qwx"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_x2u2y"]
+[ext_resource type="Texture2D" uid="uid://kr3hb8qbk02x" path="res://assets/sprites/sword/Attack2.png" id="11_mm8yc"]
 
 [sub_resource type="Curve" id="Curve_61e15"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, -0.922566, 0, 0, Vector2(1, 0), -9.84303, 0.0, 0, 0]
@@ -115,8 +116,10 @@ _data = {
 "Run": SubResource("Animation_ptjnx")
 }
 
-[sub_resource type="Animation" id="Animation_gcjey"]
-resource_name = "SwordIdle"
+[sub_resource type="Animation" id="Animation_g8k7q"]
+resource_name = "Attack1"
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -127,7 +130,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_cmkgi")]
+"values": [ExtResource("9_f0qwx")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -139,7 +142,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -148,10 +151,10 @@ tracks/2/path = NodePath("SwordAnchor/Sword:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [2, 3, 4, 5, 7, 0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -163,7 +166,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(32, -28)]
+"values": [Vector2(64, -28)]
 }
 
 [sub_resource type="Animation" id="Animation_ny6pi"]
@@ -217,10 +220,8 @@ tracks/3/keys = {
 "values": [Vector2(30, -30)]
 }
 
-[sub_resource type="Animation" id="Animation_g8k7q"]
-resource_name = "Attack1"
-length = 0.4
-step = 0.05
+[sub_resource type="Animation" id="Animation_gcjey"]
+resource_name = "SwordIdle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -231,7 +232,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_0l3ef")]
+"values": [ExtResource("9_cmkgi")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -243,7 +244,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -252,10 +253,10 @@ tracks/2/path = NodePath("SwordAnchor/Sword:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -267,12 +268,66 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(64, -28)]
+"values": [Vector2(32, -28)]
+}
+
+[sub_resource type="Animation" id="Animation_y2dxb"]
+resource_name = "Attack2"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_mm8yc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, -28)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5evj2"]
 _data = {
 "Attack1": SubResource("Animation_g8k7q"),
+"Attack2": SubResource("Animation_y2dxb"),
 "RESET": SubResource("Animation_ny6pi"),
 "SwordIdle": SubResource("Animation_gcjey")
 }
@@ -382,11 +437,11 @@ event = &"animation_finished"
 delay_in_seconds = "0.0"
 
 [node name="PrimaryExpire" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 3.0
 one_shot = true
 
 [node name="PrimaryCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.5
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="."]
@@ -394,7 +449,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.725, 0.725)
+zoom = Vector2(1.515, 1.515)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1.75, 50.75)
@@ -426,10 +481,10 @@ libraries = {
 position = Vector2(30, -30)
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("10_x2u2y")]
-offset_left = -752.0
-offset_top = -417.0
-offset_right = -201.0
-offset_bottom = -46.0
+offset_left = 103.0
+offset_top = -189.0
+offset_right = 654.0
+offset_bottom = 182.0
 initial_node_to_watch = NodePath("../StateChart")
 
 [connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
@@ -439,6 +494,8 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Run" to="." method="_on_run_state_physics_processing"]
 [connection signal="state_input" from="StateChart/Actions/Sword/SwordIdle" to="." method="_on_sword_idle_state_input"]
 [connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack1" to="." method="_on_attack_1_state_entered"]
+[connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack2" to="." method="_on_attack_2_state_entered"]
+[connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack3" to="." method="_on_attack_3_state_entered"]
 [connection signal="timeout" from="PrimaryExpire" to="." method="_on_primary_expire_timeout"]
 [connection signal="timeout" from="PrimaryCooldown" to="." method="_on_primary_cooldown_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

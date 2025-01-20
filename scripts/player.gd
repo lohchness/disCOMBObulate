@@ -106,22 +106,38 @@ func _on_sword_idle_state_input(event: InputEvent) -> void:
 
 func _on_attack_1_state_entered() -> void:
 	primary_expire.start() # Start combo expire timer
+	
 	attack_number = 1
 	ap_sword.play("Attack1")
+	print("Attack 1 entered")
+
+func _on_attack_2_state_entered() -> void:
+	primary_expire.start()
 	
-	print_debug("Attack 1 entered")
+	attack_number = 2
+	ap_sword.play("Attack2")
+	print("Attack 2 entered")
+
+func _on_attack_3_state_entered() -> void:
+	# Immediately start cooldown
+	primary_expire.stop()
+	primary_cooldown.start()
+	
+	ap_sword.play("Attack3")
+	print("Attack 3 entered")
 
 
 func _on_sword_animation_animation_finished(anim_name: StringName) -> void:
 	statechart.send_event("animation_finished")
-
+	ap.play("SwordIdle")
 
 # Timer for primary combo
 func _on_primary_expire_timeout() -> void:
 	primary_cooldown.start()
-	print_debug("Primary combo expired! Starting cooldown...")
+	print("Primary combo expired! Starting cooldown...")
+	
 
 # Timer for primary attack cooldown.
 func _on_primary_cooldown_timeout() -> void:
 	attack_number = 0
-	print_debug("Primary attack ready!")
+	print("Primary attack ready!")
