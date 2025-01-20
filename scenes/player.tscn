@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7vkciwm1rv56"]
+[gd_scene load_steps=20 format=3 uid="uid://c7vkciwm1rv56"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
 [ext_resource type="Texture2D" uid="uid://dmd1njo57ncm5" path="res://assets/aseprite/player-hooded/Idle.png" id="2_kqr6g"]
+[ext_resource type="PackedScene" uid="uid://c44iqojt6puav" path="res://scenes/Sword.tscn" id="2_mhond"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_u1clw"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_00gu3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_c8rcw"]
@@ -14,7 +15,10 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, 
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67psh"]
-size = Vector2(127.5, 128)
+size = Vector2(45.5, 26.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otfe1"]
+size = Vector2(47, 98)
 
 [sub_resource type="Animation" id="Animation_flpmq"]
 resource_name = "Idle"
@@ -108,22 +112,31 @@ _data = {
 "Run": SubResource("Animation_ptjnx")
 }
 
+[sub_resource type="Animation" id="Animation_gcjey"]
+resource_name = "SwordIdle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5evj2"]
+_data = {
+"SwordIdle": SubResource("Animation_gcjey")
+}
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_ly78k"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iv5bl")
 dashcurve = SubResource("Curve_61e15")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.725, 0.725)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 0)
-shape = SubResource("RectangleShape2D_67psh")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(4, 4)
-texture = ExtResource("2_kqr6g")
-hframes = 8
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_3xl7s")
@@ -172,24 +185,73 @@ to = NodePath("../../../Dash")
 event = &"on_dash"
 delay_in_seconds = "0.0"
 
-[node name="Attacking" type="Node" parent="StateChart/Actions"]
+[node name="Sword" type="Node" parent="StateChart/Actions"]
 script = ExtResource("5_00gu3")
-initial_state = NodePath("IdleAttack")
+initial_state = NodePath("SwordIdle")
 
-[node name="IdleAttack" type="Node" parent="StateChart/Actions/Attacking"]
+[node name="SwordIdle" type="Node" parent="StateChart/Actions/Sword"]
 script = ExtResource("6_c8rcw")
 
-[node name="Primary" type="Node" parent="StateChart/Actions/Attacking"]
+[node name="Attacks" type="Node" parent="StateChart/Actions/Sword"]
+script = ExtResource("5_00gu3")
+initial_state = NodePath("Attack1")
+
+[node name="Attack1" type="Node" parent="StateChart/Actions/Sword/Attacks"]
 script = ExtResource("6_c8rcw")
+
+[node name="Attack2" type="Node" parent="StateChart/Actions/Sword/Attacks"]
+script = ExtResource("6_c8rcw")
+
+[node name="Attack3" type="Node" parent="StateChart/Actions/Sword/Attacks"]
+script = ExtResource("6_c8rcw")
+
+[node name="Secondary" type="Node" parent="StateChart/Actions/Sword/Attacks"]
+script = ExtResource("6_c8rcw")
+
+[node name="Transition" type="Node" parent="StateChart/Actions/Sword/Attacks"]
+script = ExtResource("7_qares")
+to = NodePath("../../SwordIdle")
+event = &"animation_finished"
+delay_in_seconds = "0.0"
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.725, 0.725)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1.75, 50.75)
+shape = SubResource("RectangleShape2D_67psh")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 15)
+shape = SubResource("RectangleShape2D_otfe1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_kqr6g")
+hframes = 8
+
 [node name="Movement" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8r5eq")
 }
+
+[node name="SwordAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5evj2")
+}
+
+[node name="SwordAnchor" type="Node2D" parent="."]
+
+[node name="Sword" parent="SwordAnchor" instance=ExtResource("2_mhond")]
+position = Vector2(43, -16)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationRootNode_ly78k")
 
 [connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_physics_processing"]
