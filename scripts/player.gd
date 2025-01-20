@@ -26,6 +26,10 @@ const DASH_SPEED = 3000
 func _physics_process(delta: float) -> void:
 	if direction.x != 0:
 		sprite.flip_h = (direction.x < 0)
+	
+	$SwordAnchor.rotation = get_angle_to(get_global_mouse_position())
+	var d = get_global_mouse_position() - position
+	$SwordAnchor/Sword.scale.y = (-1 if d.x < 0 else 1)
 
 # Polling (single key presses)
 func _on_basic_state_input(event: InputEvent) -> void:
@@ -52,7 +56,6 @@ func _on_run_state_physics_processing(delta: float) -> void:
 	if not is_moving:
 		$StateChart.send_event("on_idle")
 	
-
 ## Dashing
 
 func _on_dash_timer_timeout() -> void:
@@ -74,3 +77,8 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 
 func roll_speed(t: float):
 	return dashcurve.sample(t)
+	dash_timer.stop()
+
+
+
+## Attacking

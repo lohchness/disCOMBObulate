@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c44iqojt6puav"]
+
+[ext_resource type="Texture2D" uid="uid://ciixkn30pu7b1" path="res://assets/sprites/items/Sword.png" id="1_flve3"]
+
+[node name="Sword" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_flve3")
