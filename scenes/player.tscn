@@ -548,6 +548,7 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Basic/Run" to="." method="_on_run_state_physics_processing"]
 [connection signal="state_input" from="StateChart/Actions/Sword/SwordIdle" to="." method="_on_sword_idle_state_input"]
+[connection signal="state_physics_processing" from="StateChart/Actions/Sword/SwordIdle" to="." method="_on_sword_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack1" to="." method="_on_attack_1_state_entered"]
 [connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack2" to="." method="_on_attack_2_state_entered"]
 [connection signal="state_entered" from="StateChart/Actions/Sword/Attacks/Attack3" to="." method="_on_attack_3_state_entered"]

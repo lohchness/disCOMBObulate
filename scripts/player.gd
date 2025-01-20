@@ -27,9 +27,7 @@ func _physics_process(delta: float) -> void:
 	if direction.x != 0:
 		sprite.flip_h = (direction.x < 0)
 	
-	$SwordAnchor.rotation = get_angle_to(get_global_mouse_position())
-	var d = get_global_mouse_position() - position
-	$SwordAnchor/Sword.scale.y = (-1 if d.x < 0 else 1)
+	
 
 # Polling (single key presses)
 func _on_basic_state_input(event: InputEvent) -> void:
@@ -88,6 +86,8 @@ var attack_number = 0
 @onready var primary_cooldown: Timer = $PrimaryCooldown
 
 @onready var ap_sword: AnimationPlayer = $SwordAnimation
+@onready var sword_anchor = $SwordAnchor
+@onready var sword_sprite: Sprite2D = $SwordAnchor/Sword
 
 func _on_sword_idle_state_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("primary"):
@@ -141,3 +141,13 @@ func _on_primary_expire_timeout() -> void:
 func _on_primary_cooldown_timeout() -> void:
 	attack_number = 0
 	print("Primary attack ready!")
+
+
+func _on_sword_idle_state_physics_processing(delta: float) -> void:
+	var mousepos: Vector2 = get_global_mouse_position()
+	
+	#$SwordAnchor.rotation = get_angle_to(get_global_mouse_position())
+	sword_anchor.rotation = lerp_angle(sword_anchor.rotation, get_angle_to(mousepos), 20 * delta)
+	
+	var d = mousepos - position
+	sword_sprite.scale.y = (-1 if d.x < 0 else 1)
