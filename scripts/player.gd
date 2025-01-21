@@ -24,9 +24,7 @@ const DASH_SPEED = 3000
 
 
 func _ready() -> void:
-	$SwordAnchor/Sword/Hitbox/Attack1.disabled = true
-	$Hitbox.disabled = true
-	$Hurtbox.disabled = true
+	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -80,8 +78,6 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 
 func roll_speed(t: float):
 	return dashcurve.sample(t)
-	dash_timer.stop()
-
 
 
 ## Attacking
@@ -135,7 +131,7 @@ func _on_attack_3_state_entered() -> void:
 
 func _on_sword_animation_animation_finished(anim_name: StringName) -> void:
 	statechart.send_event("animation_finished")
-	ap.play("SwordIdle")
+	ap_sword.play("SwordIdle")
 
 # Timer for primary combo
 func _on_primary_expire_timeout() -> void:
