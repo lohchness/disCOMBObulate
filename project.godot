@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="gamejam_combo"
-run/main_scene="res://scenes/Player.tscn"
+run/main_scene="res://scenes/BasicLevel.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+
+[global_group]
+
+Orb=""
+PlayerMagnetRadius=""
+PlayerPickupRadius=""
 
 [input]
 
@@ -66,3 +72,4 @@ special={
 
 2d_physics/layer_1="game world"
 2d_physics/layer_2="hitbox"
+2d_physics/layer_3="pickups"
