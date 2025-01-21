@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7vkciwm1rv56"]
+[gd_scene load_steps=31 format=3 uid="uid://c7vkciwm1rv56"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
@@ -22,9 +22,6 @@ point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67psh"]
 size = Vector2(45.5, 26.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otfe1"]
-size = Vector2(47, 98)
 
 [sub_resource type="Animation" id="Animation_flpmq"]
 resource_name = "Idle"
@@ -520,8 +517,8 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_3a3ib"]
 resource_name = "Attack3"
-length = 0.45
-step = 0.05
+length = 0.32
+step = 0.04
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -553,10 +550,10 @@ tracks/2/path = NodePath("SwordAnchor/Sword:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 0]
+"values": [0, 2, 3, 4, 5, 6, 7, 0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -589,7 +586,7 @@ tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
+"times": PackedFloat32Array(0, 0.12, 0.24),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -630,6 +627,12 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayaae"]
 size = Vector2(88.995, 229.863)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dxkg"]
+radius = 97.0155
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw7ss"]
+size = Vector2(23, 101)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iv5bl")
@@ -748,15 +751,21 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.515, 1.515)
+texture_filter = 1
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="StateChartDebugger" parent="Camera2D" instance=ExtResource("10_x2u2y")]
+offset_left = -555.0
+offset_top = -302.0
+offset_right = -273.0
+offset_bottom = 14.0
+initial_node_to_watch = NodePath("../../StateChart")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1.75, 50.75)
 shape = SubResource("RectangleShape2D_67psh")
-
-[node name="Hurtbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 15)
-shape = SubResource("RectangleShape2D_otfe1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -790,12 +799,20 @@ rotation = -0.260233
 shape = SubResource("RectangleShape2D_ayaae")
 disabled = true
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("10_x2u2y")]
-offset_left = -372.0
-offset_top = -211.0
-offset_right = -90.0
-offset_bottom = 105.0
-initial_node_to_watch = NodePath("../StateChart")
+[node name="OrbPickup" type="Node2D" parent="."]
+
+[node name="PlayerMagnetRadius" type="Area2D" parent="OrbPickup" groups=["PlayerMagnetRadius"]]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbPickup/PlayerMagnetRadius"]
+shape = SubResource("CircleShape2D_4dxkg")
+
+[node name="PlayerPickupRadius" type="Area2D" parent="OrbPickup" groups=["PlayerPickupRadius"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbPickup/PlayerPickupRadius"]
+position = Vector2(-0.5, 12.5)
+shape = SubResource("RectangleShape2D_tw7ss")
 
 [connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_physics_processing"]
