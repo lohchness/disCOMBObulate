@@ -23,6 +23,12 @@ var can_dash = true
 const DASH_SPEED = 3000
 
 
+func _ready() -> void:
+	$SwordAnchor/Sword/Hitbox/Attack1.disabled = true
+	$Hitbox.disabled = true
+	$Hurtbox.disabled = true
+
+
 func _physics_process(delta: float) -> void:
 	if direction.x != 0:
 		sprite.flip_h = (direction.x < 0)

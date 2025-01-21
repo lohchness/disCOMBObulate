@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4qj45xgwin7j"]
+
+[ext_resource type="Script" path="res://scripts/wriggler_damage_test.gd" id="1_nioq1"]
+[ext_resource type="Texture2D" uid="uid://dyu7e3v4lkdnd" path="res://assets/sprites/mooks/Wriggler.png" id="2_gvf0n"]
+[ext_resource type="Script" path="res://scripts/interfaces/hurtbox.gd" id="3_d3ukb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67sh8"]
+radius = 33.0151
+
+[node name="WrigglerDamageTest" type="CharacterBody2D"]
+script = ExtResource("1_nioq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-10, 1)
+texture = ExtResource("2_gvf0n")
+
+[node name="Hurtbox" type="Area2D" parent="Sprite2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_d3ukb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hurtbox"]
+position = Vector2(10, -2)
+shape = SubResource("CircleShape2D_67sh8")

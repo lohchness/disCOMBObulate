@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7vkciwm1rv56" path="res://scenes/Player.tscn" id="1_uqvuq"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_bno3g"]
-[ext_resource type="PackedScene" uid="uid://dbsho0cyxwor8" path="res://scenes/Wriggler.tscn" id="3_ljlkw"]
+[ext_resource type="PackedScene" uid="uid://c4qj45xgwin7j" path="res://scenes/WrigglerDamageTest.tscn" id="3_e74kc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3pegg"]
 vertices = PackedVector2Array(1156.9, -141.203, 1150.09, 545.188, 382.18, 560.781, 394.82, -156.789)
@@ -31,6 +31,5 @@ initial_node_to_watch = NodePath("..")
 position = Vector2(-435, -18)
 navigation_polygon = SubResource("NavigationPolygon_3pegg")
 
-[node name="Wriggler" parent="." node_paths=PackedStringArray("target_character") instance=ExtResource("3_ljlkw")]
-position = Vector2(731.895, 118.296)
-target_character = NodePath("../Player")
+[node name="WrigglerDamageTest" parent="." instance=ExtResource("3_e74kc")]
+position = Vector2(382, 106)
