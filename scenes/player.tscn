@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c7vkciwm1rv56"]
+[gd_scene load_steps=32 format=3 uid="uid://c7vkciwm1rv56"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iv5bl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_3xl7s"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://kr3hb8qbk02x" path="res://assets/sprites/sword/Attack2.png" id="11_mm8yc"]
 [ext_resource type="Texture2D" uid="uid://bile8t2ohymhr" path="res://assets/sprites/sword/Attack3.png" id="12_168dk"]
 [ext_resource type="Script" path="res://scripts/interfaces/hitbox.gd" id="14_dbjtj"]
+[ext_resource type="PackedScene" uid="uid://bs227bmlvgdq" path="res://scenes/experienceBar.tscn" id="16_e33je"]
 
 [sub_resource type="Curve" id="Curve_61e15"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, -0.922566, 0, 0, Vector2(1, 0), -9.84303, 0.0, 0, 0]
@@ -170,7 +171,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
+tracks/4/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -182,7 +183,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:position")
+tracks/5/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -194,7 +195,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:rotation")
+tracks/6/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -206,7 +207,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:shape:size")
+tracks/7/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:shape:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -214,204 +215,6 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(88.995, 229.863)]
-}
-
-[sub_resource type="Animation" id="Animation_ny6pi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SwordAnchor/Sword:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_cmkgi")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SwordAnchor/Sword:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SwordAnchor/Sword:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(30, -30)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(11.1504, 31.6096)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.260233]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:shape:size")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(88.995, 229.863)]
-}
-
-[sub_resource type="Animation" id="Animation_gcjey"]
-resource_name = "SwordIdle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SwordAnchor/Sword:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("9_cmkgi")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SwordAnchor/Sword:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SwordAnchor/Sword:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(32, -28)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:shape:size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(88.995, 229.863)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(11.1504, 31.6096)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.260233]
 }
 
 [sub_resource type="Animation" id="Animation_y2dxb"]
@@ -469,7 +272,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:shape:size")
+tracks/4/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -481,7 +284,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
+tracks/5/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -493,7 +296,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:position")
+tracks/6/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -505,7 +308,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:rotation")
+tracks/7/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -570,7 +373,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:shape:size")
+tracks/4/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -582,7 +385,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:disabled")
+tracks/5/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -594,7 +397,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:position")
+tracks/6/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -606,7 +409,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SwordAnchor/Sword/Hitbox/SwordSwipe:rotation")
+tracks/7/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -614,6 +417,204 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_ny6pi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_cmkgi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -30)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11.1504, 31.6096)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.260233]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:shape:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(88.995, 229.863)]
+}
+
+[sub_resource type="Animation" id="Animation_gcjey"]
+resource_name = "SwordIdle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordAnchor/Sword:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_cmkgi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordAnchor/Sword:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordAnchor/Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordAnchor/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -28)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(88.995, 229.863)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11.1504, 31.6096)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordAnchor/Sword/SwordHitbox/SwordSwipe:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.260233]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5evj2"]
@@ -753,7 +754,6 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
 process_callback = 0
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="StateChartDebugger" parent="Camera2D" instance=ExtResource("10_x2u2y")]
@@ -788,12 +788,12 @@ libraries = {
 [node name="Sword" parent="SwordAnchor" instance=ExtResource("2_mhond")]
 position = Vector2(30, -30)
 
-[node name="Hitbox" type="Area2D" parent="SwordAnchor/Sword"]
+[node name="SwordHitbox" type="Area2D" parent="SwordAnchor/Sword"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("14_dbjtj")
 
-[node name="SwordSwipe" type="CollisionShape2D" parent="SwordAnchor/Sword/Hitbox"]
+[node name="SwordSwipe" type="CollisionShape2D" parent="SwordAnchor/Sword/SwordHitbox"]
 position = Vector2(11.1504, 31.6096)
 rotation = -0.260233
 shape = SubResource("RectangleShape2D_ayaae")
@@ -814,6 +814,13 @@ shape = SubResource("CircleShape2D_4dxkg")
 position = Vector2(-0.5, 12.5)
 shape = SubResource("RectangleShape2D_tw7ss")
 
+[node name="UI" type="Node2D" parent="."]
+
+[node name="ExpBar" type="Node2D" parent="UI"]
+
+[node name="ExperienceBar" parent="UI/ExpBar" instance=ExtResource("16_e33je")]
+position = Vector2(0, 294)
+
 [connection signal="state_entered" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Actions/Movement/Dash" to="." method="_on_dash_state_physics_processing"]
 [connection signal="state_input" from="StateChart/Actions/Movement/Basic" to="." method="_on_basic_state_input"]
@@ -828,3 +835,5 @@ shape = SubResource("RectangleShape2D_tw7ss")
 [connection signal="timeout" from="PrimaryCooldown" to="." method="_on_primary_cooldown_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="SwordAnimation" to="." method="_on_sword_animation_animation_finished"]
+[connection signal="area_entered" from="SwordAnchor/Sword/SwordHitbox" to="." method="_on_sword_hitbox_area_entered"]
+[connection signal="area_entered" from="OrbPickup/PlayerPickupRadius" to="." method="_on_player_pickup_radius_area_entered"]
