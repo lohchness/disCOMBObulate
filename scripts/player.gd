@@ -153,6 +153,16 @@ func _on_sword_idle_state_physics_processing(delta: float) -> void:
 	
 	var d = mousepos - position
 	sword_sprite.scale.y = (-1 if d.x < 0 else 1)
+
+
+
+## DAMAGING ENEMIES
+
+
+func _on_sword_hitbox_area_entered(area: Area2D) -> void:
+	
+	if area.owner.has_method("take_damage"):
+		area.owner.take_damage(10)
 	
 
 ## LEVELING
