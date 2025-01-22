@@ -1,3 +1,4 @@
+class_name Wriggler
 extends CharacterBody2D
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
