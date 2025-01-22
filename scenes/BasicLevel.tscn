@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5kgoi7pra4ql"]
 
 [ext_resource type="PackedScene" uid="uid://c7vkciwm1rv56" path="res://scenes/Player.tscn" id="1_uqvuq"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_bno3g"]
 [ext_resource type="PackedScene" uid="uid://c4qj45xgwin7j" path="res://scenes/WrigglerDamageTest.tscn" id="3_e74kc"]
+[ext_resource type="PackedScene" uid="uid://dyscugpv4xqbx" path="res://scenes/Orb.tscn" id="4_cvsjb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3pegg"]
 vertices = PackedVector2Array(1156.9, -141.203, 1150.09, 545.188, 382.18, 560.781, 394.82, -156.789)
@@ -16,20 +16,59 @@ offset_left = 7.0
 offset_top = -92.0
 offset_right = 703.0
 offset_bottom = 278.0
+color = Color(0.544974, 0.544974, 0.544974, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_uqvuq")]
 position = Vector2(348, 190)
-
-[node name="StateChartDebugger2" parent="Player" instance=ExtResource("2_bno3g")]
-offset_left = 359.0
-offset_top = -438.0
-offset_right = 765.0
-offset_bottom = -173.0
-initial_node_to_watch = NodePath("..")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-435, -18)
 navigation_polygon = SubResource("NavigationPolygon_3pegg")
 
+[node name="Orb10" parent="NavigationRegion2D" instance=ExtResource("4_cvsjb")]
+position = Vector2(1073, 227)
+
 [node name="WrigglerDamageTest" parent="." instance=ExtResource("3_e74kc")]
 position = Vector2(382, 106)
+
+[node name="Orb" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(573, 111)
+
+[node name="Orb2" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(738, 201)
+
+[node name="Orb3" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(736, -50)
+
+[node name="Orb4" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(486, 225)
+
+[node name="Orb5" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(508, 31)
+
+[node name="Orb6" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(672, 97)
+
+[node name="Orb7" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(988, 229)
+
+[node name="Orb8" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(895, 105)
+
+[node name="Orb9" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(709, 349)
+
+[node name="Orb10" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(867, 252)
+
+[node name="Orb11" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(783, 110)
+
+[node name="Orb12" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(813, 281)
+
+[node name="Orb13" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(950, 339)
+
+[node name="Orb14" parent="." instance=ExtResource("4_cvsjb")]
+position = Vector2(987, 143)
