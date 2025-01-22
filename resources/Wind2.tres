@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Wind2" load_steps=3 format=3 uid="uid://7swr13pk4foi"]
+
+[ext_resource type="Texture2D" uid="uid://j8rtktwsx4j6" path="res://assets/sprites/powerup/Wind2.png" id="1_qeemy"]
+[ext_resource type="Script" path="res://scripts/upgrades/Wind2.gd" id="1_uiqtd"]
+
+[resource]
+script = ExtResource("1_uiqtd")
+icon = ExtResource("1_qeemy")
+powerup_name = "Wind II"
+powerup_description = "Dash scales with momentum."

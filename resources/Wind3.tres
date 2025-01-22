@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Wind3" load_steps=3 format=3 uid="uid://dd0ragojo2qb0"]
+
+[ext_resource type="Texture2D" uid="uid://00l6h4jb783" path="res://assets/sprites/powerup/Wind3.png" id="1_v4vi4"]
+[ext_resource type="Script" path="res://scripts/upgrades/Wind3.gd" id="2_v3dgx"]
+
+[resource]
+script = ExtResource("2_v3dgx")
+icon = ExtResource("1_v4vi4")
+powerup_name = "Wind III"
+powerup_description = "Primary attacks push enemies back further."
