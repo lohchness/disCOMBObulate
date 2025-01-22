@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs227bmlvgdq"]
+
+[ext_resource type="Texture2D" uid="uid://dpindygpvnp64" path="res://assets/sprites/ui/experience_6464.png" id="1_gyt03"]
+[ext_resource type="Script" path="res://scripts/ui/experience_bar.gd" id="2_hog5c"]
+
+[node name="ExperienceBar" type="Sprite2D"]
+scale = Vector2(15, 0.24)
+texture = ExtResource("1_gyt03")
+script = ExtResource("2_hog5c")

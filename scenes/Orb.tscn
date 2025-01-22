@@ -15,14 +15,14 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_gbxch")
 script = ExtResource("2_ixlct")
 
-[node name="Magnet" type="Area2D" parent="." groups=["Orb"]]
+[node name="Magnet" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
 shape = SubResource("CircleShape2D_pq8ds")
 
-[node name="Pickup" type="Area2D" parent="."]
+[node name="Pickup" type="Area2D" parent="." groups=["Orb"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
 shape = SubResource("CircleShape2D_sdv35")

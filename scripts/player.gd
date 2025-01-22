@@ -153,3 +153,31 @@ func _on_sword_idle_state_physics_processing(delta: float) -> void:
 	
 	var d = mousepos - position
 	sword_sprite.scale.y = (-1 if d.x < 0 else 1)
+	
+
+## LEVELING
+
+var current_level = 1
+var current_exp = 0
+@onready var expbar = $UI/ExpBar/ExperienceBar
+
+func _on_player_pickup_radius_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Orb"):
+		current_exp += 3
+		
+		if current_exp >= points_this_level(current_level):
+			level_up()
+		
+		expbar.curr_exp_percentage = current_exp / points_this_level(current_level)
+		
+
+func points_this_level(level):
+	var exp = 1.5
+	var base_exp = 10
+	return floor(base_exp * pow(level, exp))
+
+func level_up():
+	current_exp -= points_this_level(current_level)
+	current_level += 1
+	
+	

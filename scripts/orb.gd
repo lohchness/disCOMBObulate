@@ -6,7 +6,7 @@ var time_since_magnet: float = 0
 
 func _physics_process(delta: float) -> void:
 	if travel_to_player:
-		position = position.lerp(player.global_position, 8 * delta * (1 + time_since_magnet))
+		global_position = global_position.lerp(player.global_position, 8 * delta * (1 + time_since_magnet))
 		time_since_magnet += delta
 		
 
