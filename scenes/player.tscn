@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://kr3hb8qbk02x" path="res://assets/sprites/sword/Attack2.png" id="11_mm8yc"]
 [ext_resource type="Texture2D" uid="uid://bile8t2ohymhr" path="res://assets/sprites/sword/Attack3.png" id="12_168dk"]
 [ext_resource type="Script" path="res://scripts/interfaces/hitbox.gd" id="14_dbjtj"]
-[ext_resource type="PackedScene" uid="uid://bs227bmlvgdq" path="res://scenes/experienceBar.tscn" id="16_e33je"]
+[ext_resource type="PackedScene" uid="uid://bs227bmlvgdq" path="res://scenes/UI/experienceBar.tscn" id="16_e33je"]
 
 [sub_resource type="Curve" id="Curve_61e15"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.805263, 0.846154), -0.922566, -0.922566, 0, 0, Vector2(1, 0), -9.84303, 0.0, 0, 0]
