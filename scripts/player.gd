@@ -160,7 +160,7 @@ func _on_sword_idle_state_physics_processing(delta: float) -> void:
 
 
 func _on_sword_hitbox_area_entered(area: Area2D) -> void:
-	
+	print("Here")
 	if area.owner.has_method("take_damage"):
 		area.owner.take_damage(10)
 	
@@ -190,4 +190,4 @@ func level_up():
 	current_exp -= points_this_level(current_level)
 	current_level += 1
 	
-	
+	#print()

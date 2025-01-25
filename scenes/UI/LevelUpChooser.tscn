@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnfxw1stibcg8"]
+[gd_scene format=3 uid="uid://cnfxw1stibcg8"]
 
-[ext_resource type="Script" path="res://scripts/ui/level_up_chooser.gd" id="1_4bhjs"]
+[node name="LevelUpChooser" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="LevelUpChooser" type="Node2D"]
-script = ExtResource("1_4bhjs")
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="BoxContainer" parent="MarginContainer"]
+process_mode = 2
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
